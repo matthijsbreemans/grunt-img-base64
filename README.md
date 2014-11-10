@@ -1,21 +1,21 @@
-#grunt-data-uri
+#grunt-img-base64
 
 This is [gruntplugin](http://gruntjs.com) task.
 
-> Convert to data-uri from image path
+> Convert to img tag to base64
 
 ##Getting Started
 
 Install from npm.
 
 ```
-% npm install grunt-data-uri
+% npm install grunt-img-base64
 ```
 
 Add your project's `Gruntfile.js`.
 
 ```javascript
-grunt.loadNpmTasks('grunt-data-uri');
+grunt.loadNpmTasks('grunt-img-base64');
 ```
 
 ##Example
@@ -25,10 +25,10 @@ grunt.loadNpmTasks('grunt-data-uri');
 ```javascript
 grunt.initConfig({
   // sample configuration
-  dataUri: {
+  imgBase64: {
     dist: {
       // src file
-      src: ['sample/css/raw/*.css'],
+      src: ['sample/css/raw/*.html'],
       // output dir
       dest: 'sample/css',
       options: {
