@@ -159,6 +159,7 @@ module.exports = function(grunt) {
       path.relative(fromDir, toDir).split('/').forEach(function() {
         resolvedPath = '../'+resolvedPath;
       });
+	  console.log(resolvedPath);
     }
     return resolvedPath;
   }
