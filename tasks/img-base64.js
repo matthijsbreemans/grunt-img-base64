@@ -1,7 +1,7 @@
 /*
  * grunt-img-base64
  * http://github.com/matthijsbreemans/grunt-img-base64
- *
+ * /(?:url\(["']?)(.*?)(?:["']?\))/
  * Copyright (c) 2012 ahomu
  * Licensed under the MIT license.
  */
@@ -13,7 +13,7 @@ module.exports = function(grunt) {
       path     = require('path'),
       datauri  = require('datauri');
 
-  var RE_CSS_URLFUNC = /(src=(["']?)(.*?)(?:["']?)/,
+  var RE_CSS_URLFUNC = /(?:src=["']?)(.*?)(?:["'])/,
       util = grunt.util,
       gruntfileDir = path.resolve('./'),
       expandFiles;
@@ -32,13 +32,13 @@ module.exports = function(grunt) {
         srcFiles = expandFiles(this.data.src),
         destDir  = path.resolve(this.data.dest),
         haystack = [];
-
     expandFiles(options.target).forEach(function(imgPath) {
       haystack.push(path.resolve(imgPath));
     });
-
+	   
     srcFiles.forEach(function(src) {
-      var content  = grunt.file.read(src),
+ 
+	var content  = grunt.file.read(src),
           matches  = content.match(new RegExp(RE_CSS_URLFUNC.source, 'g')),
           outputTo = destDir+'/'+path.basename(src),
           baseDir,
@@ -75,15 +75,13 @@ module.exports = function(grunt) {
       // Process urls
       uris.forEach(function(uri) {
         var src, replacement, needle, fixedUri;
-
-        // fixed current dir when specified uri is like root
+         // fixed current dir when specified uri is like root
         fixedUri = uri.indexOf('/') === 0 ? '.' + uri : uri;
 
         // Resolve image realpath
-        needle = path.resolve(fixedUri);
-
-        // Assume file existing cause found from haystack
-        if (haystack.indexOf(needle) !== -1) {
+        needle = path.resolve(uri);
+         // Assume file existing cause found from haystack
+		 if (haystack.indexOf(needle) !== -1) {
 
           // check if file exceeds the max bytes
           var fileSize = getFileSize(needle);
@@ -145,9 +143,8 @@ module.exports = function(grunt) {
    * @return {String} resolvedPath
    */
   function adjustDirectoryLevel(relativePath, toDir, fromDir) {
-    // fix ../path/to/img.jpg to path/to/img.jpg
+  // fix ../path/to/img.jpg to path/to/img.jpg
     var resolvedPath = relativePath.replace(/^\.\//, '');
-
     if (toDir === fromDir) {
       // both toDir and fromDir are same base.
     }
