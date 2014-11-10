@@ -1,7 +1,6 @@
 /*
- * grunt-data-uri
- * http://github.com/ahomu/grunt-data-uri
- * http://aho.mu
+ * grunt-img-base64
+ * http://github.com/matthijsbreemans/grunt-img-base64
  *
  * Copyright (c) 2012 ahomu
  * Licensed under the MIT license.
