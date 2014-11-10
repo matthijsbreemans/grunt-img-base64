@@ -32,6 +32,7 @@ module.exports = function(grunt) {
         srcFiles = expandFiles(this.data.src),
         destDir  = path.resolve(this.data.dest),
         haystack = [];
+		
     expandFiles(options.target).forEach(function(imgPath) {
       haystack.push(path.resolve(imgPath));
     });
@@ -58,8 +59,10 @@ module.exports = function(grunt) {
       }
 
       // Change base to src(css, html, js) existing dir
-      grunt.file.setBase(baseDir);
-
+      
+	if(options.setBaseDir) {
+		grunt.file.setBase(baseDir);
+	}
       // List uniq image URIs
       uris = util._.uniq(matches.map(function(m) {
         return m.match(RE_CSS_URLFUNC)[1];
@@ -79,7 +82,7 @@ module.exports = function(grunt) {
         fixedUri = uri.indexOf('/') === 0 ? '.' + uri : uri;
 
         // Resolve image realpath
-        needle = path.resolve(uri);
+        needle = path.resolve(fixedUri);
          // Assume file existing cause found from haystack
 		 if (haystack.indexOf(needle) !== -1) {
 
@@ -159,7 +162,6 @@ module.exports = function(grunt) {
       path.relative(fromDir, toDir).split('/').forEach(function() {
         resolvedPath = '../'+resolvedPath;
       });
-	  console.log(resolvedPath);
     }
     return resolvedPath;
   }
