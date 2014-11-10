@@ -1,25 +1,22 @@
 {
-  "name": "grunt-data-uri",
-  "version": "0.2.0",
-  "description": "Convert to data-uri from image path.",
+  "name": "grunt-img-base64",
+  "version": "0.1.0",
+  "description": "Convert img src to base64",
   "keywords": [
     "gruntplugin",
     "image",
-    "data-uri",
     "base64",
     "encode"
   ],
-  "homepage": "https://github.com/ahomu/grunt-data-uri",
-  "bugs": "https://github.com/ahomu/grunt-data-uri/issues",
+  "homepage": "https://github.com/matthijsbreemans/grunt-img-base64",
+  "bugs": "https://github.com/matthijsbreemans/grunt-img-base64/issues",
   "author": {
-    "name": "Ayumu Sato",
-    "email": "mail@ayumusato.com",
-    "url": "http://aho.mu"
+    "name": "matthijsbreemans"
   },
   "main": "grunt.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/ahomu/grunt-data-uri.git"
+    "url": "git://github.com/matthijsbreemans/grunt-img-base64.git"
   },
   "dependencies": {
     "datauri": ">= 0.1"
